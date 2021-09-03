@@ -13,12 +13,20 @@
 
 	let guess;
 	/* PART A: Write code for one turn of the game */
-	while (guess != lama) {
+	for (let attempt = 0; guess != lama; attempt++) {
+		console.log("Guess attempt:" + attempt);
+		if (attempt >= 7) {
+			await alert("You ran out of guess!")
+			break;
+		}
 		// ask user to guess a number, assign their response to a variable
 		guess = await prompt("Guess a Number 1-100");
 
 		// tell the player if their guess was too low, too high, or correct
-		if (guess == lama) {
+		if (guess < 0 || guess > 100) {
+			await alert("Invalid guess!");
+			attempt--;
+		} else if (guess == lama) {
 			await alert("You got it!");
 		} else if (guess < lama) {
 			await alert("You guessed too low");
