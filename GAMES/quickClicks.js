@@ -17,7 +17,7 @@ const target =
 let btn;
 
 function btnClick() {
-	console.log('Clicked the button!');
+	console.log(Date.now());
 
 	if (btn) {
 		btn.erase();
@@ -29,7 +29,12 @@ function btnClick() {
 	btn = pc.button(target, x, y, btnClick);
 }
 
-btnClick();
+async function startGame() {
+	await pc.alert('Hello! Are you an allien? Click the button as fast as you can!');
+	btnClick();
+}
+
+startGame()
 
 /* PART B: Use recursion to make a new button after clicking a button */
 
